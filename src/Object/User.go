@@ -5,20 +5,8 @@ type User struct {
 	Name string
 }
 
-func NewUser(fs ...func(u *User)) *User {
+func NewUser(fs ...UserAttrFunc) *User {
 	u := new(User)
-	for _,f:=range fs {
-		f(u)
-	}
+	UserAttrFuncs(fs).apply(u)
 	return  u
-}
-func WithId(id int)func(u *User)  {
-	return func(u *User) {
-		u.Id = id
-	}
-}
-func WithName(name string)func(u *User)  {
-	return func(u *User) {
-		u.Name = name
-	}
 }
