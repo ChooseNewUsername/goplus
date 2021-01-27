@@ -1,15 +1,13 @@
 package main
 
 import (
-	"fmt"
-	"goplus/src/Map"
+	"goplus/src/Interface"
 )
 
-func chang(user Map.User)  {
-	user["cc"] = "ad"
+func SaveModel(service Interface.IService) Interface.IService {
+	service.Save()
+	return service
 }
 func main()  {
-	u:= Map.NewUser()
-	u.Set("id",1).Set("cc","dd")
-	fmt.Println(u)
+	SaveModel(Interface.NewProdService()).Save().Save()
 }
